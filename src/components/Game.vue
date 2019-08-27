@@ -11,19 +11,37 @@
 										<div class="app-icon">
 											<img v-bind:src="game.icon" style="width:80%; border-radius: 20%;">	
 										</div>
-										<div class="market-link">
-											<a target="_blank" rel="noopener noreferrer" v-bind:href="game.gpUrl">
-											<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width:80%"/></a>
+										<div class="market-link">											
+											<template v-if="game.gpUrl && game.gpUrl != ''">
+												<a target="_blank" rel="noopener noreferrer" v-bind:href="game.gpUrl">
+													<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width:80%"/>
+												</a>
+											</template>
+											<template v-else>
+												<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width:80%;  filter: blur(3px);"/>												
+											</template>											
 										</div>	
-										<div class="market-link">
-											<a target="_blank" rel="noopener noreferrer" v-bind:href="game.appStoreUrl">
-											<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width:80%; filter: grayscale(150%)"/></a>
+										<div class="market-link">											
+											<template v-if="game.appStoreUrl && game.appStoreUrl != ''">
+												<a target="_blank" rel="noopener noreferrer" v-bind:href="game.appStoreUrl">
+													<img alt='Get it on AppStore' src='src/assets/app-store-badge.png' style="width:80%;"/>
+												</a>
+											</template>
+											<template v-else>
+												<img alt='Get it on AppStore' src='src/assets/app-store-badge.png' style="width:80%; filter: blur(3px);"/>
+											</template>
 										</div>	
 									</div>
 									<div class="application-bigcolumn">		
 										<div class="video_container">
-											<iframe class="video" v-bind:src="game.video" frameborder="0" 
+											<template v-if="game.video && game.video != ''">
+												<iframe class="video" v-bind:src="game.video" frameborder="0" 
 											allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</template>
+											<template v-if="game.featcher && game.featcher != ''">
+												<img v-bind:src="game.featcher" style="width:100%"/>
+											</template>
+											
 										</div>
 									</div>				
 						</div>
@@ -44,7 +62,8 @@
 								<div id="app-name">
 									<h2>Description</h2>
 								</div>
-								{{game.description}}
+								<h2>{{game.description}}</h2>
+								
 							</div>										
 						</div>
 					</div>

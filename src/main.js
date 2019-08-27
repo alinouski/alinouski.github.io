@@ -1,28 +1,24 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import VueFirestore from 'vue-firestore';
-import App from './App.vue'
+import App from './App.vue';
+import router from './router/index'
+//import store from './store'
+//import { db } from './firebase/firebaseConfig'
 
 Vue.use(VueFirestore);
 
-//const fb = require('./firebase/firebaseConfig')
+/*const auth =  db.app.auth();
 
-import router from './router/index'
+auth.onAuthStateChanged(user => {
+  store.commit('updateUser',{ user })
+})*/
 
 new Vue({
   el: '#app',
   router,
+  //store,
   template: '<App/>',
   components: { App }
 })
 
-/*let app
-fb.auth.onAuthStateChanged(user => {
-    if (!app) {
-        app = new Vue({
-          el: '#app',
-          router,
-          template: '<App/>',
-          components: { App }
-        })
-    }
-})*/
+

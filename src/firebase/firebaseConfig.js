@@ -1,4 +1,4 @@
-
+import store from '../store'
 import firebase from 'firebase'
 import 'firebase/firestore'
 
@@ -12,7 +12,8 @@ const config = {
     messagingSenderId: "1097467939204"
 }
 
-let app = firebase.initializeApp(config)
+
+const app = firebase.initializeApp(config)
 export const db = app.firestore()
 
 /*firebase.initializeApp(config)

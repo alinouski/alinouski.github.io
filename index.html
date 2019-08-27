@@ -13,16 +13,16 @@
 		<script>
 			$(document).ready(function()
 			{
-				$('.nav').click(function(){
+				/*('.nav').click(function(){
 					var $this = $(this), 
 						$toElement = $this.attr('value'),
 						$offset = $this.attr('offset');
 					$('html,body').animate({
 						scrollTop: $($toElement).offset().top - $offset
 					},1000);
-				});
+				});*/
 		
-				$('img[data-enlargable]').click(function(){
+				$('[data-enlargable]').click(function(){
 					var src = $(this).attr('src');
 					$('<div>').css({
 						background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
