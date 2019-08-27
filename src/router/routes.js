@@ -7,6 +7,8 @@ import SignUp from '../pages/SignUp.vue'
 import Admin from '../pages/admin/Admin.vue'
 import AdminMain from '../components/admin/AdminMain.vue'
 import AdminGames from '../components/admin/Gameslist.vue'
+import AdminGamesStats from '../components/admin/GamesStatslist.vue'
+import AdminGameStats from '../components/admin/GameStats.vue'
 import AdminEditGame from '../components/admin/EditGame.vue'
 
 export default [
@@ -39,6 +41,19 @@ export default [
               path: '/game/:id',
               name: 'admin.game.edit',
               component: AdminEditGame ,
+              props: true,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'stats',
+              name: 'admin.stats',
+              component: AdminGamesStats,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: '/stats/:id',
+              name: 'admin.stats.game',
+              component: AdminGameStats,
               props: true,
               meta: { requiresAuth: true }
             }

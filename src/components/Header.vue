@@ -40,7 +40,7 @@
     created() {
         if(firebase.auth().currentUser){
             this.link = '/admin'
-            this.header = 'Account'
+            this.header = 'Admin'
             this.isLogin = true
         }
         else

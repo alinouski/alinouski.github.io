@@ -16,6 +16,7 @@
     "vue": "^2.5.11",
     "vue-firebase-auth": "^0.1.0",
     "vue-firestore": "^0.3.22",
+    "vue-google-charts": "^0.3.2",
     "vue-router": "^3.1.2",
     "vuex": "^3.1.1",
     "vuex-persist": "^2.0.1",

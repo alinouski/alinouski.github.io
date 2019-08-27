@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import Header from '../components/admin/Header'
+  import Header from '../components/Header'
   import Footer from '../components/Footer'
   import '../assets/main_styles.css'
 
