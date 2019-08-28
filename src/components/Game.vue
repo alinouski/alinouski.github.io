@@ -19,9 +19,7 @@
 											</template>
 											<template v-else>
 												<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="width:80%;  filter: blur(3px);"/>												
-											</template>											
-										</div>	
-										<div class="market-link">											
+											</template>				
 											<template v-if="game.appStoreUrl && game.appStoreUrl != ''">
 												<a target="_blank" rel="noopener noreferrer" v-bind:href="game.appStoreUrl">
 													<img alt='Get it on AppStore' src='src/assets/app-store-badge.png' style="width:80%;"/>
@@ -30,42 +28,70 @@
 											<template v-else>
 												<img alt='Get it on AppStore' src='src/assets/app-store-badge.png' style="width:80%; filter: blur(3px);"/>
 											</template>
-										</div>	
+										</div>											
 									</div>
-									<div class="application-bigcolumn">		
-										<div class="video_container">
-											<template v-if="game.video && game.video != ''">
-												<iframe class="video" v-bind:src="game.video" frameborder="0" 
-											allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											</template>
-											<template v-if="game.featcher && game.featcher != ''">
-												<img v-bind:src="game.featcher" style="width:100%"/>
-											</template>
-											
+									<template v-if="(game.video && game.video != '') || (game.featcher && game.featcher != '')">
+										<div class="application-bigcolumn">		
+											<div class="video_container">
+												<template v-if="game.video && game.video != ''">
+													<iframe class="video" v-bind:src="game.video" frameborder="0" 
+												allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+												</template>
+												<template v-if="game.featcher && game.featcher != ''">
+													<img v-bind:src="game.featcher" style="width:100%"/>
+												</template>												
+											</div>
+										</div>	
+									</template>	
+									<template v-else>	
+										<template v-if="game.screen1 && game.screen1 != ''">
+											<div class="application-column">
+													<img data-enlargable v-bind:src="game.screen1" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">			
+											</div>
+										</template>
+										<template v-if="game.screen2 && game.screen2 != ''">
+											<div class="application-column">
+												<img data-enlargable v-bind:src="game.screen2" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
+											</div>
+										</template>
+										<template v-if="game.screen3 && game.screen3 != ''">
+											<div class="application-column">
+												<img data-enlargable v-bind:src="game.screen3" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
+											</div>
+										</template>
+									</template>	
+						</div>
+						<template v-if="(game.video && game.video != '') || (game.featcher && game.featcher != '')">
+							<div class="application-line" id="app-content" style="clear: both;">
+							</div>
+							<div class="application-line" id="app-content" style="clear: both;">
+
+								<template v-if="game.screen1 && game.screen1 != ''">
+									<div class="application-column">
+											<img data-enlargable v-bind:src="game.screen1" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">			
+									</div>
+								</template>
+								<template v-if="game.screen2 && game.screen2 != ''">
+									<div class="application-column">
+										<img data-enlargable v-bind:src="game.screen2" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
+									</div>
+								</template>
+								<template v-if="game.screen3 && game.screen3 != ''">
+									<div class="application-column">
+										<img data-enlargable v-bind:src="game.screen3" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
+									</div>
+								</template>
+
+								<template v-if="(game.screen1 && game.screen1 != '') || (game.screen2 && game.screen2 != '') || (game.screen3 && game.screen3 != '')">
+									<div class="application-column" >
+										<div id="app-name">
+											<h2>Description</h2>
 										</div>
-									</div>				
-						</div>
-						<div class="application-line" id="app-content" style="clear: both;">
-						</div>
-						<div class="application-line" id="app-content" style="clear: both;">
-							
-							<div class="application-column">
-									<img data-enlargable v-bind:src="game.screen1" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">			
-								</div>
-								<div class="application-column">
-									<img data-enlargable v-bind:src="game.screen2" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
-								</div>
-								<div class="application-column">
-									<img data-enlargable v-bind:src="game.screen3" alt="Monterosso" style="width:100%;cursor: zoom-in" class="img-enlargable">
-								</div>
-							<div class="application-column" >
-								<div id="app-name">
-									<h2>Description</h2>
-								</div>
-								<h2>{{game.description}}</h2>
-								
-							</div>										
-						</div>
+										<h2>{{game.description}}</h2>									
+									</div>			
+								</template>							
+							</div>
+						</template>
 					</div>
 				</div>	
 			</div>

@@ -6,7 +6,7 @@
                     <router-link to="/games" value="#content" class="nav">Games</router-link>
                 </div>
                 <div v-if="isLogin" class="menu-item">
-                    <router-link to="admin/games" value="#content" class="nav">Games</router-link>
+                    <router-link to="/admin/games" value="#content" class="nav">Games</router-link>
                 </div>
                 <div class="menu-item">
                     <router-link v-bind:to="link" value="#content" class="nav">{{header}}</router-link>
