@@ -3,6 +3,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes.js';
 import store from '../store'
+import { logPageView } from '../firebase/firebaseConfig'
 
 Vue.use(VueRouter);
 
@@ -21,4 +22,9 @@ router.beforeEach((to, from, next) => {
   else if (isLoginOrSignIn && currentUser) next('admin')
   else next()
 })
+
+router.afterEach((to) => {
+  logPageView(to)
+})
+
 export default router;
