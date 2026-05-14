@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <About></About>
+    <About :games-count="sortedGames.length"></About>
     <Game v-for="gameData in sortedGames" v-bind:key="gameData.name" v-bind:game="gameData"></Game>
   </main-layout>
 </template>

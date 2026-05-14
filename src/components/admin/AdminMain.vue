@@ -12,14 +12,24 @@
       </div>
     </div>
 
-    <div class="admin-metrics">
-      <div class="metric">
-        <span class="metric__label">Games</span>
-        <strong>{{ gamesCount }}</strong>
+    <div class="admin-info-panel">
+      <div class="admin-info-panel__header">
+        <span class="metric__label">Main information</span>
       </div>
-      <div class="metric">
-        <span class="metric__label">Games with stats</span>
-        <strong>{{ gamesWithStats }}</strong>
+
+      <div class="admin-metrics">
+        <div class="metric">
+          <span class="metric__label">Total games</span>
+          <strong>{{ gamesCount }}</strong>
+        </div>
+        <div class="metric">
+          <span class="metric__label">Published games</span>
+          <strong>{{ hostedGamesCount }}</strong>
+        </div>
+        <div class="metric">
+          <span class="metric__label">Games with stats</span>
+          <strong>{{ gamesWithStats }}</strong>
+        </div>
       </div>
     </div>
   </section>
@@ -34,6 +44,7 @@ export default {
     data: function () {
         return {
             gamesCount: 0,
+            hostedGamesCount: 0,
             gamesWithStats: 0
         }
     },
@@ -47,6 +58,7 @@ export default {
 
         db.collection('games').get().then(snap => {            
             this.gamesCount = snap.size
+            this.hostedGamesCount = snap.docs.filter(doc => doc.data().hosted === true).length
         })      
     }
 }

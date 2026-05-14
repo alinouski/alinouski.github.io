@@ -15,6 +15,11 @@
         <textarea v-model="settings.description" placeholder="Short profile description"></textarea>
       </label>
 
+      <label class="field">
+        <span>Experience start date</span>
+        <input type="date" v-model="settings.experienceStartDate">
+      </label>
+
       <label class="field field--wide">
         <span>Skills</span>
         <textarea
@@ -38,7 +43,8 @@ export default {
     return {
       settings: {
         description: 'I build compact, colorful games and tools with Unity, C# and web technologies.',
-        skills: ['Unity3D', 'C# .NET', 'Spring Java']
+        skills: ['Unity3D', 'C# .NET', 'Spring Java'],
+        experienceStartDate: ''
       },
       skillsText: 'Unity3D\nC# .NET\nSpring Java',
       isEditingSkills: false
@@ -83,7 +89,8 @@ export default {
 
       settingsRef.set({
         description: this.settings.description || '',
-        skills: skills
+        skills: skills,
+        experienceStartDate: this.settings.experienceStartDate || ''
       }, { merge: true }).then(() => {
         alert('Profile settings saved')
       })
