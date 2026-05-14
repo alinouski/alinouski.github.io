@@ -1,11 +1,28 @@
 <template>
-<div class="content" id="content">
-    <router-link :to="{ name: 'admin.game.add' }"><h2>New Game</h2></router-link>
-    <router-link :to="{ name: 'admin.stats' }"><h2>Stats</h2></router-link>
-    AdminPanel<br>
-    Total games on db {{gamesCount}}<br>
-    Total games with statistic on db {{gamesWithStats}}<br>
-</div>
+  <section class="admin-page" id="content">
+    <div class="admin-page__header">
+      <div>
+        <p class="eyebrow">Control panel</p>
+        <h1>Overview</h1>
+      </div>
+
+      <div class="admin-actions">
+        <router-link class="admin-button" :to="{ name: 'admin.game.add' }">New Game</router-link>
+        <router-link class="admin-button admin-button--secondary" :to="{ name: 'admin.stats' }">Stats</router-link>
+      </div>
+    </div>
+
+    <div class="admin-metrics">
+      <div class="metric">
+        <span class="metric__label">Games</span>
+        <strong>{{ gamesCount }}</strong>
+      </div>
+      <div class="metric">
+        <span class="metric__label">Games with stats</span>
+        <strong>{{ gamesWithStats }}</strong>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>

@@ -1,10 +1,18 @@
 <template>
-    <div  class="content" id="content">
-        <div >
-            <h1><router-link to="/admin/stats">Back</router-link></h1>
-        </div>
-        <GameOsStatistic v-for="os in game_stats.os" v-bind:key="os.name" v-bind:game_os="os"></GameOsStatistic>
+  <section class="admin-page" id="content">
+    <div class="admin-page__header">
+      <div>
+        <p class="eyebrow">Analytics</p>
+        <h1>{{ id }}</h1>
+      </div>
+
+      <router-link class="admin-button admin-button--secondary" to="/admin/stats">Back</router-link>
     </div>
+
+    <div class="stats-stack">
+      <GameOsStatistic v-for="os in game_stats.os" :key="os.name" :game_os="os"></GameOsStatistic>
+    </div>
+  </section>
 </template>
 
 <script>

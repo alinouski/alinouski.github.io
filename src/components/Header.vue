@@ -1,59 +1,54 @@
 <template>
-    <div>
-        <div class="header" id="head">
-            <div class="nav-menu">		
-                <div v-if="!isLogin" class="menu-item">
-                    <router-link to="/games" value="#content" class="nav">Games</router-link>
-                </div>
-                <div v-if="isLogin" class="menu-item">
-                    <router-link to="/admin/games" value="#content" class="nav">Games</router-link>
-                </div>
-                <div class="menu-item">
-                    <router-link v-bind:to="link" value="#content" class="nav">{{header}}</router-link>
-                </div>
-                <div v-if="isLogin" class="menu-item">
-                    <router-link to="/logout" value="#content" class="nav">Logout</router-link>
-                </div>
-                
-                <!--div class="menu-item">
-                    <a href="#" value="#about" class="nav">About</a>
-                </div-->		
-                <div class="logo">
-                    <router-link to="/home" value="#top" class="nav">Home</router-link>
-                </div>		
-            </div>
-        </div>
-    </div>
+  <div>
+    <header
+      class="site-header site-header--minimal"
+      v-bind:class="{ 'site-header--hidden': isHeaderHidden }"
+      id="head"
+    >
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <router-link to="/login" class="nav">Login</router-link>
+      </nav>
+    </header>
+
+    <button
+      v-if="showTopButton"
+      class="scroll-top-button"
+      type="button"
+      aria-label="Scroll to top"
+      v-on:click="scrollToTop"
+    >
+      ↑
+    </button>
+  </div>
 </template>
 
 <script>
-  import firebase from 'firebase';
-
   export default {
     data: function () {
         return{
-            link: '/login',
-            header: 'Login',
-            isLogin: false
+            isHeaderHidden: false,
+            showTopButton: false
         }
     },
-    created() {
-        if(firebase.auth().currentUser){
-            this.link = '/admin'
-            this.header = 'Admin'
-            this.isLogin = true
-        }
-        else
-        {
-            this.link = '/login'
-            this.header = 'Login'
-            this.isLogin = false
-        }
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll, { passive: true })
+        this.handleScroll()
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll)
     },
     methods: {
-        logout: function(){
-            firebase.auth().signOut().then(() => {
-                this.$router.replace('login')
+        handleScroll: function(){
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop
+            const shouldHide = scrollY > 80
+
+            this.isHeaderHidden = shouldHide
+            this.showTopButton = shouldHide
+        },
+        scrollToTop: function(){
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             })
         }
     }

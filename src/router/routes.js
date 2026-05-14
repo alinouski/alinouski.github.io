@@ -10,6 +10,7 @@ import AdminGames from '../components/admin/Gameslist.vue'
 import AdminGamesStats from '../components/admin/GamesStatslist.vue'
 import AdminGameStats from '../components/admin/GameStats.vue'
 import AdminEditGame from '../components/admin/EditGame.vue'
+import AdminSettings from '../components/admin/Settings.vue'
 
 export default [
     { path: '/', component: Home },
@@ -48,6 +49,12 @@ export default [
               path: 'stats',
               name: 'admin.stats',
               component: AdminGamesStats,
+              meta: { requiresAuth: true }
+            },
+            {
+              path: 'settings',
+              name: 'admin.settings',
+              component: AdminSettings,
               meta: { requiresAuth: true }
             },
             {

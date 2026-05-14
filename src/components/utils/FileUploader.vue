@@ -1,10 +1,12 @@
 <template>
-
-  <div>
+  <div class="file-uploader">
     <slot></slot>
-    <input type="file" multiple accept="image/*" @change="detectFiles($event.target.files)">{{ progressUpload }}%
+    <span class="file-uploader__control">
+      <input type="file" multiple accept="image/*" @change="detectFiles($event.target.files)">
+      <span>Upload</span>
+      <small>{{ progressUpload }}%</small>
+    </span>
   </div>
-
 </template>
 
 <script>

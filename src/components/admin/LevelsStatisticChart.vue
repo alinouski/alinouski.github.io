@@ -1,11 +1,11 @@
 <template>
-    <div>  
-         <GChart
-            type="ColumnChart"
-            :data="chartData"
-            :options="chartOptions"
-        />
-    </div>
+  <div class="chart-panel">  
+    <GChart
+      type="ColumnChart"
+      :data="chartData"
+      :options="chartOptions"
+    />
+  </div>
 </template>
 
 <script>
@@ -31,8 +31,11 @@ export default {
 
             return {
                 chart: {
-                title: 'Company Performance'
-                }
+                    title: 'Level funnel'
+                },
+                legend: { position: 'bottom' },
+                height: 320,
+                colors: ['#1f6f73', '#b35f1f', '#7f4bb0']
             }
         }
     },

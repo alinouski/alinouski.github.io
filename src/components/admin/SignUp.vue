@@ -1,26 +1,22 @@
 <template>
-  <div class="content">
-    <h3>Create a new account</h3>
-    <input
-      v-model="email" 
-      type="text" 
-      class="input" 
-      placeholder="Email" 
-      required>
-    <br>
-    <input 
-      v-model="password"
-      type="password" 
-      class="input" 
-      placeholder="Password" 
-      required>
-    <br>
-    <button v-on:click="signUp" class="button">Sign Up!</button>
-    <button class="button">
-      <router-link to="/login">
-        Back
-      </router-link>
-    </button>
+  <div class="auth-panel">
+    <p class="eyebrow">Admin access</p>
+    <h1>Create account</h1>
+
+    <label class="field">
+      <span>Email</span>
+      <input v-model="email" type="text" placeholder="Email" required>
+    </label>
+
+    <label class="field">
+      <span>Password</span>
+      <input v-model="password" type="password" placeholder="Password" required>
+    </label>
+
+    <div class="admin-actions">
+      <button v-on:click="signUp" class="admin-button">Sign Up</button>
+      <router-link class="admin-button admin-button--secondary" to="/login">Back</router-link>
+    </div>
   </div>
 </template>
 
@@ -45,27 +41,3 @@
     }
   }
 </script>
-
-<style scoped>  /* "scoped" attribute limit the CSS to this component only */
-  .login {
-    margin-top: 40px;
-  }
-  input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
-  }
-  button {
-    margin-top: 20px;
-    width: 10%;
-    cursor: pointer;
-  }
-  p {
-    margin-top: 40px;
-    font-size: 13px;
-  }
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-</style>

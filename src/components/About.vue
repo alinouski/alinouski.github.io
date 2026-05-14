@@ -1,43 +1,70 @@
 <template>
-  <div id="about">
-			<div class="about" id="message">
-				<div class="application-line" id="app-name">
-					<h1>ABOUT</h1>
-				</div>
+  <section class="hero" id="about">
+    <div class="hero__sections">
+      <article class="hero-section">
+        <p class="eyebrow">About</p>
+        <p v-if="hasText(profileDescription)">{{ profileDescription }}</p>
+      </article>
 
-				<div class="about-line" >
-					<div class="about-column">
-						<h2>Me:</h2>
-						<img  src="../assets/images/me/myPhoto.jpg" style=" border-radius: 50%;width:100%">
-						<h2>Alinouski Aliaksei</h2>
-					</div>
-					<div class="about-column">
-							<h2>Contacts:</h2>
-						<div class="contact">
-							<a target="_blank" rel="noopener noreferrer" href='https://vk.com/broff_evoro'>
-								<img alt='vk profile' src='../assets/images/SocialNetworks/vk.png' style="width:100%"/>
-							</a>
-							<a target="_blank" rel="noopener noreferrer" href='https://t.me/alinouski'>
-								<img alt='telegram' src='../assets/images/SocialNetworks/telegram.svg' style="width:100%"/>
-							</a>
-							<a target="_blank" rel="noopener noreferrer" href='mailto:alinouski@gmail.com'>
-								<img alt='mail' src='../assets/images/SocialNetworks/mail.svg' style="width:100%"/>
-							</a>
-						</div>								
-					</div>
-					<div class="about-column">
-						<h2>Stack:</h2>
-						<p><h3>Unity3d</h3>
-						<p><h3>C# .Net</h3>
-						<p><h3>Spring Java</h3>
-					</div>
-				</div>
-				<div class="spacer" style="clear: both;"></div>		
-			</div>
-		</div>
+      <article class="hero-section">
+        <p class="eyebrow">Contacts</p>
+        <div class="hero__actions">
+          <a class="hero__contact" target="_blank" rel="noopener noreferrer" href="mailto:alinouski@gmail.com">Mail</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="profile-panel">
+      <div class="profile-panel__heading">
+        <h1 class="profile-panel__name">Alinouski Aliaksei</h1>
+      </div>
+      <img class="profile-panel__photo" src="../assets/images/me/myPhoto.jpg" alt="Alinouski Aliaksei">
+      <div v-if="skills.length" class="profile-panel__meta">
+        <span v-for="skill in skills" :key="skill">{{ skill }}</span>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
+import { db } from '../firebase/firebaseConfig'
+
 export default {
+  data: function () {
+    return {
+      settings: {
+        description: 'I build compact, colorful games and tools with Unity, C# and web technologies.',
+        skills: ['Unity3D', 'C# .NET', 'Spring Java']
+      },
+      defaultDescription: 'I build compact, colorful games and tools with Unity, C# and web technologies.',
+      defaultSkills: ['Unity3D', 'C# .NET', 'Spring Java']
+    }
+  },
+  firestore: function () {
+    return {
+      settings: db.collection('settings').doc('profile')
+    }
+  },
+  computed: {
+    profileDescription: function () {
+      if (this.settings && typeof this.settings.description !== 'undefined') {
+        return this.settings.description
+      }
+
+      return this.defaultDescription
+    },
+    skills: function () {
+      if (this.settings && Array.isArray(this.settings.skills)) {
+        return this.settings.skills.filter(this.hasText)
+      }
+
+      return this.defaultSkills
+    }
+  },
+  methods: {
+    hasText: function (value) {
+      return typeof value === 'string' && value.trim() !== ''
+    }
+  }
 }
 </script>

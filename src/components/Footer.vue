@@ -1,13 +1,11 @@
 <template>
-    <div class="bottom-block">
-			<div class="footer">
-				<p>© 2019 Alinouski Aliaksei. All right reserved ©.
-					<p>
-					<a href="termsofuse.html">Terms of use</a>
-					<a href="privacypolicy.html">Privacy policy</a>
-				</p>
-			</div>
-		</div>	
+  <footer class="footer">
+    <p>© 2026 Alinouski Aliaksei. All rights reserved.</p>
+    <nav aria-label="Legal links">
+      <a href="termsofuse.html">Terms of use</a>
+      <a href="privacypolicy.html">Privacy policy</a>
+    </nav>
+  </footer>
 </template>
 
 <script>

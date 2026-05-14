@@ -1,9 +1,19 @@
 <template>
-  <div class="content">
-    <h3>Login</h3>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password" placeholder="Password"><br>
-    <button @click="login">Connect</button>
+  <div class="auth-panel">
+    <p class="eyebrow">Admin access</p>
+    <h1>Login</h1>
+
+    <label class="field">
+      <span>Email</span>
+      <input type="text" v-model="email" placeholder="Email">
+    </label>
+
+    <label class="field">
+      <span>Password</span>
+      <input type="password" v-model="password" placeholder="Password">
+    </label>
+
+    <button class="admin-button" @click="login">Connect</button>
     <!--p>You don't have an account ? You can <router-link to="/signup">create one</router-link></p-->
   </div>
 </template>
@@ -32,16 +42,3 @@
     }
   }
 </script>
-
-<style scoped>
-  input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
-  }
-  button {
-    margin-top: 20px;
-    width: 10%;
-    cursor: pointer;
-  }
-</style>

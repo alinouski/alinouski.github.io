@@ -1,7 +1,7 @@
 <template>
   <main-layout>
     <About></About>
-    <Game v-for="gameData in games" v-bind:key="gameData.name" v-bind:game="gameData"></Game>
+    <Game v-for="gameData in sortedGames" v-bind:key="gameData.name" v-bind:game="gameData"></Game>
   </main-layout>
 </template>
 
@@ -24,11 +24,20 @@
             games: []
         }
     },
+    computed: {
+      sortedGames: function () {
+        return this.games.slice().sort((first, second) => this.gameOrder(first) - this.gameOrder(second))
+      }
+    },
     firestore() {
       return {
         games: db.collection('games').where('hosted','==', true),
       }
+    },
+    methods: {
+      gameOrder: function (game) {
+        return Number.isFinite(Number(game.order)) ? Number(game.order) : this.games.indexOf(game)
+      }
     }
   }
 </script>
-
